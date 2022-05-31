@@ -4,8 +4,10 @@
 }
 
 body {
+    margin-left: 25px;
     background-color: rgb(30, 33, 36);
     color: orange;
+    font-family: monospace;
 }
 header {
     padding: 25px;
@@ -17,3 +19,4 @@ a {
     text-decoration: none;
     color: greenyellow;
 }
+
