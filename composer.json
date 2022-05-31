@@ -1,0 +1,17 @@
+{
+    "name": "admin/mvcobjet",
+    "autoload": {
+        "psr-4": {
+            "mvcobjet\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "sadligC",
+            "email": "gildas.c@ik.me"
+        }
+    ],
+    "require": {
+        "klein/klein": "^2.1"
+    }
+}
