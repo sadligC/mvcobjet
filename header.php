@@ -10,9 +10,7 @@
 <body>
     <header>
         <a href="<?=_URL?>listeActeurs">//_liste acteurs</a>
-        <a href="<?=_URL?>listeFilms">//_liste films</a>
-        <a href="<?=_URL?>unActeur/3">//_un acteur</a>
+        <a href="<?=_URL?>addActor">//_ajouter un acteur</a>
+        <a href="<?=_URL?>updateActeur">//_modifier un acteur</a>
     </header>
     
-</body>
-</html>

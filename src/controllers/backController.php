@@ -2,40 +2,24 @@
 
 namespace mvcobjet\controllers;
 
-use mvcobjet\models\daos\ActorDao;
-use mvcobjet\models\daos\MovieDao;
+use mvcobjet\models\services\ActorService;
 
 class BackController {
 
-    
+    private $actorService;
 
-    public function listeActeurs () {
-
-        $actordao = new ActorDao ();
-        $result = $actordao -> findAll();
-        echo "<pre>";
-        print_r($result);
-        echo "</pre>";
-
+    public function __construct() {
+        $this->actorService = new ActorService();
     }
 
-    public function listeFilms () {
-
-        $movdao = new MovieDao ();
-        $result = $movdao -> findAll();
-        echo "<pre>";
-        print_r($result);
-        echo "</pre>";
-
+    public function addActor($actor) {
+        $this->actorService->create($actor);
     }
 
-    public function getActor ($id) {
-        $actorDao = new ActorDao ();
-        $result = $actorDao -> findById($id);
-        echo "<pre>";
-        print_r($result);
-        echo "</pre>";
+    public function updateActor($actor) {
+        $this->actorService->updateActor($actor);
     }
+
 }
 
 
