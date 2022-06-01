@@ -3,8 +3,7 @@
 $url = "http://localhost/afpa_dwwm/back_end_01/mvc/objet/mvcobjet/";
 define ('_URL', $url);
 
-require_once ('header.php');
-
+require_once ('header.php');  
 require_once ('vendor/autoload.php');
 
 use mvcobjet\controllers\BackController;
@@ -23,7 +22,7 @@ $fc = new FrontController();
 $bc = new BackController();
 
 /////////////////////////////////////////////////////////////////////////////////
-//////////////////////// actions sur acteurs/////////////////////////////////////
+//////////////////////// actions sur acteurs ////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////
 
 // ************** afficher la liste des acteurs**********************************
@@ -79,9 +78,15 @@ $klein ->respond('GET', '/moviesList', function() use($fc) {
 });
 
 // *************** afficher les détails d'un film *****************************
-$kelin ->respond('GET', '/printMovie/[id]', function() use($fc) {
-    $result = $fc ->getOneMovie($id);
+$klein ->respond('GET', '/printMovie/[:id]', function($request) use($fc) {
+    $movie = $fc ->getOneMovie($request ->id);
+    $director = $fc ->movieDirector($request ->id);
+    $casting = $fc ->movieCasting($request ->id);
+    $genre = $fc ->movieGenre($request ->id);
+    $comments = $fc ->movieComments($request ->id);
+    require_once('src/views/viewMovieById.php');
 });
+
 
 $klein -> dispatch();
 

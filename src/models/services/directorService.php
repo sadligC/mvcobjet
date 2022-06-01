@@ -13,5 +13,9 @@ class DirectorService {
     public function getAllDirectors() {
        return $directors = $this ->directorDao ->selectAll();
     }
+
+    public function getMovieDirector($id) {
+        return $director = $this -> directorDao ->selectMovieDirector($id);
+    }
 }
 ?>

@@ -23,4 +23,25 @@ a {
 ul {
     list-style: none;
 }
+.movie-main {
+    display: flex;
+}
+.cover {
+    padding: 10px;
+    margin: 25px;
+    width: 150px;
+    border: 1px solid white;
+}
+.cover img {
+    width: 100%;
+}
+.com {
+    padding: 5px;
+    margin-top: 5px;
+    border: 1px solid;
+}
+.com aside {
+    display: flex;
+    justify-content: space-between;
+}
 
