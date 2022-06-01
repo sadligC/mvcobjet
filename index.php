@@ -22,15 +22,17 @@ $klein = new \Klein\Klein();
 $fc = new FrontController();
 $bc = new BackController();
 
+/////////////////////////////////////////////////////////////////////////////////
+//////////////////////// actions sur acteurs/////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////
 
+// ************** afficher la liste des acteurs**********************************
 $klein -> respond('GET','/listeActeurs', function() use($fc) {
     $res = $fc -> listeActeurs();
-    // echo "<pre>";
-    // print_r ($res);
-    // echo "</pre>";
     require_once ('src/views/viewListActor.php');
 });
 
+// ******************* ajouter un acteur à la bd *************************************
 $klein -> respond('GET','/addActor', function() {
     require_once ('src/views/viewAddActeur.php');
 });
@@ -39,6 +41,7 @@ $klein -> respond('POST','/addActeur', function($request) use($bc) {
     $bc -> addActor($request->paramsPost());
 });
 
+// ******************* modifier un acteur dans la bd *******************
 $klein -> respond('GET','/updateActeur', function() use($fc) {
     $actorList = $fc -> listeActeurs();
     require_once ('src/views/viewUpdateActeur.php');
@@ -55,7 +58,30 @@ $klein -> respond('POST','/updateActor', function($request) use ($bc) {
     $bc -> updateActor($request->paramsPost());
 });
 
+////////////////////////////////////////////////////////////////////////////////
+////////////////// actions sur les réalisateurs ////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 
+// *************** afficher la liste des réalisateurs *************************
+$klein -> respond('GET','/directorsList', function() use($fc) {
+    $res = $fc -> directorsList();
+    require_once ('src/views/viewDirectorsList.php');
+});
+
+////////////////////////////////////////////////////////////////////////////////
+///////////////// actions sur les films ////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+
+// ************** afficher la liste des films //////////////////////////////////
+$klein ->respond('GET', '/moviesList', function() use($fc) {
+    $result = $fc ->moviesList();
+    require_once('src/views/viewMoviesList.php');
+});
+
+// *************** afficher les détails d'un film *****************************
+$kelin ->respond('GET', '/printMovie/[id]', function() use($fc) {
+    $result = $fc ->getOneMovie($id);
+});
 
 $klein -> dispatch();
 

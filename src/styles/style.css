@@ -20,3 +20,7 @@ a {
     color: greenyellow;
 }
 
+ul {
+    list-style: none;
+}
+
