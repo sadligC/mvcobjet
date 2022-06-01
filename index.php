@@ -3,11 +3,12 @@
 $url = "http://localhost/afpa_dwwm/back_end_01/mvc/objet/mvcobjet/";
 define ('_URL', $url);
 
-require_once ('header.php');  
+ 
 require_once ('vendor/autoload.php');
 
 use mvcobjet\controllers\BackController;
 use mvcobjet\controllers\FrontController;
+use Twig\Environment;
 
 
 $base  = dirname($_SERVER['PHP_SELF']);
@@ -18,7 +19,12 @@ if(ltrim($base, '/')){
 $klein = new \Klein\Klein();
 
 
-$fc = new FrontController();
+$loader = new \Twig\Loader\FilesystemLoader(__DIR__.'/src/views');
+$twig = new Environment($loader, ['cache' => false, 'debug' => true]);
+$twig->addExtension(new \Twig\Extension\DebugExtension());
+
+
+$fc = new FrontController($twig);
 $bc = new BackController();
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -28,7 +34,7 @@ $bc = new BackController();
 // ************** afficher la liste des acteurs**********************************
 $klein -> respond('GET','/listeActeurs', function() use($fc) {
     $res = $fc -> listeActeurs();
-    require_once ('src/views/viewListActor.php');
+    // require_once ('src/views/viewListActor.php');
 });
 
 // ******************* ajouter un acteur à la bd *************************************
@@ -91,5 +97,3 @@ $klein ->respond('GET', '/printMovie/[:id]', function($request) use($fc) {
 $klein -> dispatch();
 
 ?>
-</body>
-</html>

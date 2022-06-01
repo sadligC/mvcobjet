@@ -13,19 +13,32 @@ class FrontController {
     private $movieService;
     private $genreService;
     private $commentService;
+    private $twig;
 
-    public function __construct() {
+  
+
+  
+
+    public function __construct($twig) {
         $this -> actorService = new ActorService();
         $this -> directorService = new DirectorService();
         $this ->movieService = new MovieService();
         $this ->genreService = new GenreService();
         $this ->commentService = new CommentService();
+        $this->twig = $twig;
     }
 
+    public function listeActeurs()
+  { // recup des acteurs (liste d'objet)
+    $result = $this->actorService->getAllActors();
+    // compilation twig + acteur = html
+    echo $this->twig->render('actor.html.twig', ['actors' => $result]);
+  }
+
     // ***** controller actor ****
-    public function listeActeurs() {
-        return $this -> actorService ->getAllActors();
-    }
+    // public function listeActeurs() {
+    //     return $this -> actorService ->getAllActors();
+    // }
     public function selectActeur($id) {
         return $this -> actorService ->getOneActor($id);
     }
