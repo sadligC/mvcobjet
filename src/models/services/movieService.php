@@ -13,6 +13,10 @@ class MovieService {
     public function getAllmovies() {
        return $movies = $this ->movieDao ->selectAll();
     }
+
+    public function getOneMovie($id) {
+        return $movie = $this ->movieDao ->selectById($id);
+    }
 }
 
 

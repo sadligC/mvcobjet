@@ -29,8 +29,8 @@ class ActorDao extends BaseDao {
 
     public function findById ($id) {
         $sql = "SELECT * FROM actor WHERE id = ?";
-        $stmt = $this -> db -> prepare ($sql);
-        $stmt -> execute([$id]);
+        $stmt = $this ->db ->prepare ($sql);
+        $stmt ->execute([$id]);
         $result = $stmt;
         if ($result) {
            return $stmt -> fetchObject(Actor::class);
@@ -39,8 +39,8 @@ class ActorDao extends BaseDao {
 
     public function create($actor) {
         $sql = "INSERT INTO actor (first_name, last_name) VALUES (?,?)";
-        $stmt = $this->db->prepare($sql);
-        $result= $stmt->execute([$actor['nom'], $actor['prenom']]);
+        $stmt = $this ->db ->prepare($sql);
+        $result= $stmt ->execute([$actor['nom'], $actor['prenom']]);
         if ($result) {
             header('Location:listeActeurs');
             die();
@@ -49,11 +49,25 @@ class ActorDao extends BaseDao {
 
     public function updateActor($actor) {
         $sql = "UPDATE actor SET first_name = ?, last_name = ? WHERE id = ?";
-        $stmt = $this->db->prepare($sql);
-        $result = $stmt-> execute([$actor['prenom'], $actor['nom'], $actor['id']]);
+        $stmt = $this ->db ->prepare($sql);
+        $result = $stmt ->execute([$actor['prenom'], $actor['nom'], $actor['id']]);
         if ($result) {
             header('Location:updateActeur');
             die();
+        }
+    }
+
+    public function selectMovieActors($id) {
+        $sql = "SELECT actor.id, first_name, last_name FROM actor, movies_actors
+                WHERE actor.id = actor_id AND movie_id = ?";
+        $stmt = $this ->db ->prepare($sql);
+        $result = $stmt ->execute([$id]);
+        if ($result) {
+            $casting = [];
+            while ($actor = $stmt ->fetchObject(Actor::class)) {
+                array_push($casting, $actor);
+            }
+            return $casting;
         }
     }
 }
