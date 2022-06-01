@@ -8,7 +8,7 @@ class Movie {
     private $description;
     private $duration;
     private $date;
-    private $cover;
+    private $cover_image;
     private $genre_id;
     private $director_id;
 
@@ -58,11 +58,11 @@ class Movie {
     }
 
      
-    public function getCover(){
-        return $this->cover;
+    public function getCover_image(){
+        return $this->cover_image;
     } 
-    public function setCover($cover){
-        $this->cover = $cover;
+    public function setCover_image($cover_image){
+        $this->cover_image = $cover_image;
         return $this;
     }
 
