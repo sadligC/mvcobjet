@@ -1,0 +1,15 @@
+{% extends "base.html.twig" %}
+
+{% block title %} Acteurs {% endblock %}
+
+{% block content %}
+
+<h1>Ajouter un acteur</h1>
+
+<form action="/afpa_dwwm/back_end_01/mvc/objet/mvcobjet/addActor" method="POST">
+    <input type="text" name="first_name" placeholder="Prénom"><br>
+    <input type="text" name="last_name" placeholder="Nom"><br>
+    <input type="submit" value="OK">
+</form>
+
+{% endblock %}

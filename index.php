@@ -27,40 +27,47 @@ $twig->addExtension(new \Twig\Extension\DebugExtension());
 $fc = new FrontController($twig);
 $bc = new BackController();
 
+
+// ---------------------------- ACCUEIL ------------------------------------------
+
+$klein ->respond('GET', '/', function() use($fc) {
+    $fc ->accueil();
+});
+
+
+
 /////////////////////////////////////////////////////////////////////////////////
 //////////////////////// actions sur acteurs ////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////
 
 // ************** afficher la liste des acteurs**********************************
-$klein -> respond('GET','/listeActeurs', function() use($fc) {
-    $res = $fc -> listeActeurs();
-    // require_once ('src/views/viewListActor.php');
+$klein -> respond('GET','/listActors', function() use($fc) {
+    $fc -> printActorsList();
 });
 
 // ******************* ajouter un acteur à la bd *************************************
-$klein -> respond('GET','/addActor', function() {
-    require_once ('src/views/viewAddActeur.php');
+$klein -> respond('GET','/printAddActor', function() use($fc) {
+    $fc -> printAddActor();
 });
 
-$klein -> respond('POST','/addActeur', function($request) use($bc) {
+$klein -> respond('POST','/addActor', function($request) use($bc, $fc) {
     $bc -> addActor($request->paramsPost());
+    $fc -> printActorsList();
 });
 
-// ******************* modifier un acteur dans la bd *******************
-$klein -> respond('GET','/updateActeur', function() use($fc) {
-    $actorList = $fc -> listeActeurs();
-    require_once ('src/views/viewUpdateActeur.php');
+// ******************* modifier un acteur dans la bd ******************
+$klein ->respond('GET', '/printUpdateActorList', function() use($fc) {
+    $fc ->printUpdateActorList();
 });
 
-$klein -> respond('POST','/selectActor', function($request) use($fc) {
+$klein -> respond('POST','/printUpdateActor', function($request) use($fc) {
     $id = $request->paramsPost()['acteur'];
-    $acteur = $fc -> selectActeur ($id);
-    $actorList = $fc -> listeActeurs();
-    require_once ('src/views/viewUpdateActeur.php');
+    $fc -> printUpdateActor ($id);
 });
 
-$klein -> respond('POST','/updateActor', function($request) use ($bc) {
+$klein -> respond('POST','/updateActor', function($request) use ($bc, $fc) {
     $bc -> updateActor($request->paramsPost());
+    $fc -> printActorsList();
 });
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -70,7 +77,6 @@ $klein -> respond('POST','/updateActor', function($request) use ($bc) {
 // *************** afficher la liste des réalisateurs *************************
 $klein -> respond('GET','/directorsList', function() use($fc) {
     $res = $fc -> directorsList();
-    require_once ('src/views/viewDirectorsList.php');
 });
 
 ////////////////////////////////////////////////////////////////////////////////
