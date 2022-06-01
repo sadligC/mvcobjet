@@ -5,7 +5,7 @@
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => 'dbb581e115322b2b35d51f78ca8a347db74d19df',
+        'reference' => 'c1b826e0f99a115c606ccb8a203eb6ccb9a93c35',
         'name' => 'admin/mvcobjet',
         'dev' => true,
     ),
@@ -16,7 +16,7 @@
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => 'dbb581e115322b2b35d51f78ca8a347db74d19df',
+            'reference' => 'c1b826e0f99a115c606ccb8a203eb6ccb9a93c35',
             'dev_requirement' => false,
         ),
         'klein/klein' => array(
