@@ -2,15 +2,32 @@
 <html lang="en">
 <head>
     {% block head %}
-        <meta charset="UTF-8">
-        <title>{% block title %}{% endblock %}</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>db_*/CINE\*_db{% block title %}{% endblock %}</title>
     {% endblock %}
+    <link rel="stylesheet" href="src/styles/style.css">
 </head>
 <body>
-{% block header %} {% endblock %}
-    <div class="container">
+<header>
+    <ul>
+        <li><a href="/afpa_dwwm/back_end_01/mvc/objet/mvcobjet/listActors">//_liste acteurs</a></li>
+        <li><a href="/afpa_dwwm/back_end_01/mvc/objet/mvcobjet/printAddActor">//_ajouter un acteur</a></li>
+        <li><a href="/afpa_dwwm/back_end_01/mvc/objet/mvcobjet/printUpdateActorList">//_modifier un acteur</a></li>
+    </ul>
+        
+    <a href="/afpa_dwwm/back_end_01/mvc/objet/mvcobjet/directorsList">//_liste réalisateurs</a>
+        
+        
+    <a href="/afpa_dwwm/back_end_01/mvc/objet/mvcobjet/moviesList">//_liste films</a>
+</header>
+
+<div class="container">
+    
         {% block content %}
         {% endblock %}
-    </div>
+</div>
+
 </body>
 </html>

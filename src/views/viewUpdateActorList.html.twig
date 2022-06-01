@@ -1,0 +1,21 @@
+{% extends "base.html.twig" %}
+
+{% block title %} Acteurs {% endblock %}
+
+{% block content %}
+
+<h1>Modifier un acteur</h1>
+
+<h2>Choisir l'acteur.rice</h2>
+<form action="/afpa_dwwm/back_end_01/mvc/objet/mvcobjet/printUpdateActor" method="POST">
+    <select name="acteur">
+       {% for actor in actors %}
+            <option value="{{actor.id}}">
+            {{actor.first_name}} {{actor.last_name | upper}}
+            </option>
+        {% endfor %}
+    </select>
+    <input type="submit" value="OK">
+</form>
+
+{% endblock %}

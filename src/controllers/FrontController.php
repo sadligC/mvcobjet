@@ -15,10 +15,6 @@ class FrontController {
     private $commentService;
     private $twig;
 
-  
-
-  
-
     public function __construct($twig) {
         $this -> actorService = new ActorService();
         $this -> directorService = new DirectorService();
@@ -28,18 +24,37 @@ class FrontController {
         $this->twig = $twig;
     }
 
-    public function listeActeurs()
-  { // recup des acteurs (liste d'objet)
-    $result = $this->actorService->getAllActors();
-    // compilation twig + acteur = html
-    echo $this->twig->render('actor.html.twig', ['actors' => $result]);
-  }
+    public function accueil() {
+        echo $this ->twig ->render('viewAccueil.html.twig');
+    }
+
+    
 
     // ***** controller actor ****
-    // public function listeActeurs() {
-    //     return $this -> actorService ->getAllActors();
-    // }
-    public function selectActeur($id) {
+    public function actorsList() { 
+        $actors = $this->actorService->getAllActors();
+      }
+
+    public function printActorsList() { 
+        $actors = $this->actorService->getAllActors();
+        echo $this ->twig ->render('viewActorsList.html.twig', ['actors' => $actors]);
+      }
+    
+    public function printAddActor() {
+        echo $this ->twig ->render('viewAddActor.html.twig');
+    }
+
+    public function printUpdateActorList() {
+        $actors = $this ->actorService ->getAllActors();
+        echo $this ->twig ->render('viewUpdateActorList.html.twig', ['actors' => $actors]);
+    }
+
+    public function printUpdateActor($id) {
+        $actor = $this ->actorService ->getOneActor($id);
+        echo $this ->twig ->render('viewUpdateActor.html.twig', ['actor' => $actor]);
+    }
+
+    public function selectActor($id) {
         return $this -> actorService ->getOneActor($id);
     }
     public function movieCasting($id) {
@@ -48,7 +63,8 @@ class FrontController {
 
     // **** controller director ****
     public function directorsList() {
-        return $this ->directorService ->getAllDirectors();
+        $directors =  $this ->directorService ->getAllDirectors();
+        echo $this ->twig ->render('viewDirectorsList.html.twig', ['directors' => $directors]);
     }
 
     public function movieDirector($id) {

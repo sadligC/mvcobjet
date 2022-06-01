@@ -4,14 +4,6 @@ use mvcobjet\models\entities\Actor;
 
 class ActorDao extends BaseDao {
 
-    public function creeObj ($fields) {
-        $acteur = new Actor();
-        $acteur->setId($fields['id']);
-        $acteur->setFirst_name($fields['first_name']);
-        $acteur->setLast_name($fields['last_name']);
-        return $acteur;
-    }
-
     public function findAll() {
         $sql = "SELECT * FROM actor";
         $stmt = $this->db->prepare($sql);
@@ -19,11 +11,10 @@ class ActorDao extends BaseDao {
         $result = $stmt;
         if ($result) {
             $actors = [];
-            while ($row = $stmt->fetch(\PDO::FETCH_ASSOC)) {
-                array_push ($actors, $this->creeObj($row));
+            while ($actor = $stmt->fetchObject(Actor::class)) {
+                array_push ($actors, $actor);
             }
             return $actors;
-
         }
     }
 
@@ -40,21 +31,13 @@ class ActorDao extends BaseDao {
     public function create($actor) {
         $sql = "INSERT INTO actor (first_name, last_name) VALUES (?,?)";
         $stmt = $this ->db ->prepare($sql);
-        $result= $stmt ->execute([$actor['nom'], $actor['prenom']]);
-        if ($result) {
-            header('Location:listeActeurs');
-            die();
-        }
+        $result= $stmt ->execute([$actor['first_name'], $actor['last_name']]);
     }
 
     public function updateActor($actor) {
         $sql = "UPDATE actor SET first_name = ?, last_name = ? WHERE id = ?";
         $stmt = $this ->db ->prepare($sql);
-        $result = $stmt ->execute([$actor['prenom'], $actor['nom'], $actor['id']]);
-        if ($result) {
-            header('Location:updateActeur');
-            die();
-        }
+        $stmt ->execute([$actor ->getFirst_name, $actor ->getLast_name, $actor -> getId]);
     }
 
     public function selectMovieActors($id) {
