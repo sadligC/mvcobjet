@@ -2,9 +2,9 @@
 
 {% block title %} Réalisateurs {% endblock %}
 
-{% block content %}
-<h1>Liste des réalisateurs</h1>
+{% block h1 %}Liste des réalisateurs{% endblock %}
 
+{% block content %}
     {% for director in directors %}
         {{director.first_name}} {{director.last_name | upper}} <br>
     {% endfor %}

@@ -32,6 +32,10 @@ ul {
     width: 150px;
     border: 1px solid white;
 }
+.casting {
+    display: flex;
+    align-items: center;
+}
 .cover img {
     width: 100%;
 }

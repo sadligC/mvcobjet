@@ -7,10 +7,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>db_*/CINE\*_db{% block title %}{% endblock %}</title>
     {% endblock %}
-    <link rel="stylesheet" href="src/styles/style.css">
+    <link rel="stylesheet" href="/afpa_dwwm/back_end_01/mvc/objet/mvcobjet/src/styles/style.css">
 </head>
 <body>
 <header>
+    <a href="/afpa_dwwm/back_end_01/mvc/objet/mvcobjet/">//_accueil</a>
+
     <ul>
         <li><a href="/afpa_dwwm/back_end_01/mvc/objet/mvcobjet/listActors">//_liste acteurs</a></li>
         <li><a href="/afpa_dwwm/back_end_01/mvc/objet/mvcobjet/printAddActor">//_ajouter un acteur</a></li>
@@ -22,13 +24,16 @@
         <li><a href="/afpa_dwwm/back_end_01/mvc/objet/mvcobjet/printUpdateDirectorList">//_modifier un réalisaeur</a></li>
     </ul>
         
-        
-        
-    <a href="/afpa_dwwm/back_end_01/mvc/objet/mvcobjet/moviesList">//_liste films</a>
+    <ul>      
+        <li><a href="/afpa_dwwm/back_end_01/mvc/objet/mvcobjet/moviesList">//_liste films</a></li>
+        <li><a href="/afpa_dwwm/back_end_01/mvc/objet/mvcobjet/printUpdateMovieList">//_modifier un film</a></li>
+    </ul>
 </header>
 
 <div class="container">
     
+        <h1>{% block h1 %}{% endblock %}</h1>
+
         {% block content %}
         {% endblock %}
 </div>

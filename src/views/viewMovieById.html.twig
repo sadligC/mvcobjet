@@ -1,0 +1,63 @@
+{% extends "base.html.twig" %}
+
+{% block title %} {{movie.title}} {% endblock %}
+
+{% block h1 %}{{movie.title}}{% endblock %}
+
+{% block content %}
+
+<div class="movie-info">
+    <div class="movie-main">
+        <div class="cover">
+            <img src="{{movie.cover_image}}" alt="{{movie.cover_image}}">
+        </div>
+        <div class="casting">
+            <div>
+                <h2>Equipe</h2>
+                <h3>Réalisateur</h3>
+                <p>{{movie.director.first_name}} {{movie.director.last_name}}</p>
+                <h3>Casting</h3><?php 
+                {% for actor in movie.casting %}
+                    <p>{{actor.first_name}}{{actor.last_name}}</p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <div class="movie-data">
+        <h3>Genre</h3>
+        <p>{{movie.genre.name}}</p>
+        <h3>Date de sortie</h3>
+        <p>{{ movie.date |date('d-m-Y')}}</p>
+        <h3>Durée</h3>
+        <p>{{movie.duration}}</p>
+        <h3>Résumé</h3>
+        <p>{{movie.description}}</p>
+    </div>
+
+    <div class="movie-comments">
+        <h3>Commentaires:</h3>
+        {% for com in movie.comments %}
+            <div class="com">
+                <aside>
+                    <div>
+                        <h4>Auteur:</h4>
+                        <p>{{com.author}}></p>
+                    </div>
+                    <div>
+                        <h4>Note:</h4>
+                        <p>{{com.mark}}>/10</p>
+                    </div>
+                </aside>
+                <article>
+                    <h4>Commentaire:</h4>
+                    <p>{{com.content}}></p>
+                </article>
+                
+            </div>
+        {% endfor %}
+        
+    </div>
+</div>
+
+{% endblock %}
