@@ -11,15 +11,23 @@ class DirectorService {
     }
 
     public function getAllDirectors() {
-       return $directors = $this ->directorDao ->selectAll();
+       return $this ->directorDao ->selectAll();
     }
 
     public function getMovieDirector($id) {
-        return $director = $this -> directorDao ->selectMovieDirector($id);
+        return $this -> directorDao ->selectMovieDirector($id);
     }
 
     public function create($director) {
         $this ->directorDao ->create($director);
+    }
+
+    public function getOneDirector($id) {
+        return $this ->directorDao ->findById($id);
+    }
+
+    public function updateDirector($director) {
+        $this ->directorDao ->updateDirector($director);
     }
 }
 ?>
