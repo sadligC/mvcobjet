@@ -41,17 +41,23 @@ class FrontController {
       }
     
     public function printAddActor() {
-        echo $this ->twig ->render('viewAddActor.html.twig');
+        $status = "Actor";
+        $role = "acteur";
+        echo $this ->twig ->render('viewAddPerson.html.twig'), ['status' =>$status, 'role' =>$role];
     }
 
     public function printUpdateActorList() {
+        $status = "Actor";
+        $role = "acteur";
         $actors = $this ->actorService ->getAllActors();
-        echo $this ->twig ->render('viewUpdateActorList.html.twig', ['actors' => $actors]);
+        echo $this ->twig ->render('viewUpdatePersonList.html.twig', ['persons' => $actors, 'status' =>$status, 'role' =>$role]);
     }
 
     public function printUpdateActor($id) {
+        $status = "Actor";
+        $role = "acteur";
         $actor = $this ->actorService ->getOneActor($id);
-        echo $this ->twig ->render('viewUpdateActor.html.twig', ['actor' => $actor]);
+        echo $this ->twig ->render('viewUpdatePerson.html.twig', ['person' => $actor, 'status' =>$status, 'role' =>$role]);
     }
 
     public function selectActor($id) {
@@ -62,10 +68,29 @@ class FrontController {
     }
 
     // **** controller director ****
-    public function directorsList() {
+    public function printDirectorsList() {
         $directors =  $this ->directorService ->getAllDirectors();
         echo $this ->twig ->render('viewDirectorsList.html.twig', ['directors' => $directors]);
     }
+
+    public function printAddDirector() {
+        $status = "Director";
+        $role = "réalisateur";
+        echo $this ->twig ->render('viewAddPerson.html.twig'), ['status' =>$status, 'role' =>$role];
+    }
+
+    public function printUpdateDirectorList() {
+        $status = "Director";
+        $role = "réalisateur";
+        $directors = $this ->directorService ->getAllDirectors();
+        echo $this ->twig ->render('viewUpdatePersonList.html.twig', ['persons' => $directors, 'status' =>$status, 'role' =>$role]);
+    }
+
+    public function printUpdateDirector($id) {
+        $director = $this ->directorService ->getOneDirector($id);
+        echo $this ->twig ->render('viewUpdateActor.html.twig', ['actor' => $actor]);
+    }
+    
 
     public function movieDirector($id) {
         return $this ->directorService ->getMovieDirector($id);

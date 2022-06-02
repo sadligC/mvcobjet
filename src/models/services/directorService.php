@@ -17,5 +17,9 @@ class DirectorService {
     public function getMovieDirector($id) {
         return $director = $this -> directorDao ->selectMovieDirector($id);
     }
+
+    public function create($director) {
+        $this ->directorDao ->create($director);
+    }
 }
 ?>

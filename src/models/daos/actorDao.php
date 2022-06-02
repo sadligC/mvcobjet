@@ -37,7 +37,7 @@ class ActorDao extends BaseDao {
     public function updateActor($actor) {
         $sql = "UPDATE actor SET first_name = ?, last_name = ? WHERE id = ?";
         $stmt = $this ->db ->prepare($sql);
-        $stmt ->execute([$actor ->getFirst_name, $actor ->getLast_name, $actor -> getId]);
+        $stmt ->execute([$actor ['first_name'], $actor ['last_name'], $actor['id']]);
     }
 
     public function selectMovieActors($id) {

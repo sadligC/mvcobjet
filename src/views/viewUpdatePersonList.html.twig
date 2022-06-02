@@ -1,0 +1,21 @@
+{% extends "base.html.twig" %}
+
+{% block title %} {{role}} {% endblock %}
+
+{% block content %}
+
+<h1>Modifier un {{role}}</h1>
+
+<h2>Choisir un {{role}}</h2>
+<form action="/afpa_dwwm/back_end_01/mvc/objet/mvcobjet/printUpdate{{status}}" method="POST">
+    <select name="person">
+       {% for person in persons %}
+            <option value="{{person.id}}">
+            {{person.first_name}} {{person.last_name | upper}}
+            </option>
+        {% endfor %}
+    </select>
+    <input type="submit" value="OK">
+</form>
+
+{% endblock %}

@@ -28,6 +28,12 @@ class DirectorDao extends BaseDao {
             return $stmt -> fetchObject(Director::class);
         }
     }
+
+    public function create($director) {
+        $sql = "INSERT INTO director (first_name, last_name) VALUES (?, ?)";
+        $stmt = $this ->db -> prepare($sql);
+        $stmt ->execute([$director['first_name'], $director['last_name']]);
+    }
 }
 
 ?>
