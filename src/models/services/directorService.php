@@ -18,7 +18,8 @@ class DirectorService {
         return $this -> directorDao ->selectMovieDirector($id);
     }
 
-    public function create($director) {
+    public function create($directorInfo) {
+        $director = $this ->directorDao ->createDirector($directorInfo);
         $this ->directorDao ->create($director);
     }
 
@@ -26,7 +27,8 @@ class DirectorService {
         return $this ->directorDao ->findById($id);
     }
 
-    public function updateDirector($director) {
+    public function updateDirector($directorInfo) {
+        $director = $this ->directorDao ->createDirector($directorInfo);
         $this ->directorDao ->updateDirector($director);
     }
 }

@@ -4,6 +4,7 @@ use mvcobjet\models\entities\Actor;
 
 class ActorDao extends BaseDao {
 
+// ----------------------- requetes SQL ----------------------------------//
     public function findAll() {
         $sql = "SELECT * FROM actor";
         $stmt = $this->db->prepare($sql);
@@ -31,13 +32,13 @@ class ActorDao extends BaseDao {
     public function create($actor) {
         $sql = "INSERT INTO actor (first_name, last_name) VALUES (?,?)";
         $stmt = $this ->db ->prepare($sql);
-        $result= $stmt ->execute([$actor['first_name'], $actor['last_name']]);
+        $stmt ->execute([$actor ->getFirst_name(), $actor ->getLast_name()]);
     }
 
     public function updateActor($actor) {
         $sql = "UPDATE actor SET first_name = ?, last_name = ? WHERE id = ?";
         $stmt = $this ->db ->prepare($sql);
-        $stmt ->execute([$actor ['first_name'], $actor ['last_name'], $actor['id']]);
+        $stmt ->execute([$actor ->getFirst_name(), $actor ->getLast_name(), $actor ->getId()]);
     }
 
     public function selectMovieActors($id) {
@@ -53,6 +54,21 @@ class ActorDao extends BaseDao {
             return $casting;
         }
     }
+
+
+// ---------------------------- constructeur d'objet acteur ---------------------//
+    public function createActor($actorInfo) {
+        $actor = new Actor;
+
+        $actor ->setId($actorInfo['id']);
+        $actor ->setLast_name($actorInfo['last_name']);
+        $actor ->setFirst_name($actorInfo['first_name']);
+
+        return $actor;
+    }
+
+
+
 }
 
 

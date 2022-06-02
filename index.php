@@ -16,7 +16,7 @@ if(ltrim($base, '/')){
     $_SERVER['REQUEST_URI'] = substr($_SERVER['REQUEST_URI'], strlen($base));
 }
 
-$klein = new \Klein\Klein();
+$route = new \Klein\Klein();
 
 
 $loader = new \Twig\Loader\FilesystemLoader(__DIR__.'/src/views');
@@ -30,7 +30,7 @@ $bc = new BackController();
 
 // ---------------------------- ACCUEIL ------------------------------------------
 
-$klein ->respond('GET', '/', function() use($fc) {
+$route ->respond('GET', '/', function() use($fc) {
     $fc ->accueil();
 });
 
@@ -41,31 +41,31 @@ $klein ->respond('GET', '/', function() use($fc) {
 /////////////////////////////////////////////////////////////////////////////////
 
 // ************** afficher la liste des acteurs**********************************
-$klein -> respond('GET','/listActors', function() use($fc) {
+$route -> respond('GET','/listActors', function() use($fc) {
     $fc -> printActorsList();
 });
 
 // ******************* ajouter un acteur à la bd *************************************
-$klein -> respond('GET','/printAddActor', function() use($fc) {
+$route -> respond('GET','/printAddActor', function() use($fc) {
     $fc -> printAddActor();
 });
 
-$klein -> respond('POST','/addActor', function($request) use($bc, $fc) {
+$route -> respond('POST','/addActor', function($request) use($bc, $fc) {
     $bc -> addActor($request->paramsPost());
     $fc -> printActorsList();
 });
 
 // ******************* modifier un acteur dans la bd ******************
-$klein ->respond('GET', '/printUpdateActorList', function() use($fc) {
+$route ->respond('GET', '/printUpdateActorList', function() use($fc) {
     $fc ->printUpdateActorList();
 });
 
-$klein -> respond('POST','/printUpdateActor', function($request) use($fc) {
+$route -> respond('POST','/printUpdateActor', function($request) use($fc) {
     $id = $request->paramsPost()['person'];
     $fc -> printUpdateActor ($id);
 });
 
-$klein -> respond('POST','/updateActor', function($request) use ($bc, $fc) {
+$route -> respond('POST','/updateActor', function($request) use ($bc, $fc) {
     $bc -> updateActor($request->paramsPost());
     $fc -> printActorsList();
 });
@@ -75,31 +75,31 @@ $klein -> respond('POST','/updateActor', function($request) use ($bc, $fc) {
 ////////////////////////////////////////////////////////////////////////////////
 
 // *************** afficher la liste des réalisateurs *************************
-$klein -> respond('GET','/listDirectors', function() use($fc) {
+$route -> respond('GET','/listDirectors', function() use($fc) {
     $res = $fc -> printDirectorsList();
 });
 
 // ******************* ajouter un réalisateur à la bd *************************************
-$klein -> respond('GET','/printAddDirector', function() use($fc) {
+$route -> respond('GET','/printAddDirector', function() use($fc) {
     $fc -> printAddDirector();
 });
 
-$klein -> respond('POST','/addDirector', function($request) use($bc, $fc) {
+$route -> respond('POST','/addDirector', function($request) use($bc, $fc) {
     $bc -> addDirector($request->paramsPost());
     $fc -> printDirectorsList();
 });
 
 
-$klein ->respond('GET', '/printUpdateDirectorList', function() use($fc) {
+$route ->respond('GET', '/printUpdateDirectorList', function() use($fc) {
     $fc ->printUpdateDirectorList();
 });
 
-$klein -> respond('POST','/printUpdateDirector', function($request) use($fc) {
+$route -> respond('POST','/printUpdateDirector', function($request) use($fc) {
     $id = $request->paramsPost()['person'];
     $fc -> printUpdateDirector ($id);
 });
 
-$klein -> respond('POST','/updateDirector', function($request) use ($bc, $fc) {
+$route -> respond('POST','/updateDirector', function($request) use ($bc, $fc) {
     $bc -> updateDirector($request->paramsPost());
     $fc -> printDirectorsList();
 });
@@ -109,13 +109,13 @@ $klein -> respond('POST','/updateDirector', function($request) use ($bc, $fc) {
 ////////////////////////////////////////////////////////////////////////////////
 
 // ************** afficher la liste des films //////////////////////////////////
-$klein ->respond('GET', '/moviesList', function() use($fc) {
+$route ->respond('GET', '/moviesList', function() use($fc) {
     $result = $fc ->moviesList();
 });
 
 
 
 
-$klein -> dispatch();
+$route -> dispatch();
 
 ?>
