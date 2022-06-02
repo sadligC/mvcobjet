@@ -111,18 +111,9 @@ $klein -> respond('POST','/updateDirector', function($request) use ($bc, $fc) {
 // ************** afficher la liste des films //////////////////////////////////
 $klein ->respond('GET', '/moviesList', function() use($fc) {
     $result = $fc ->moviesList();
-    require_once('src/views/viewMoviesList.php');
 });
 
-// *************** afficher les détails d'un film *****************************
-$klein ->respond('GET', '/printMovie/[:id]', function($request) use($fc) {
-    $movie = $fc ->getOneMovie($request ->id);
-    $director = $fc ->movieDirector($request ->id);
-    $casting = $fc ->movieCasting($request ->id);
-    $genre = $fc ->movieGenre($request ->id);
-    $comments = $fc ->movieComments($request ->id);
-    require_once('src/views/viewMovieById.php');
-});
+
 
 
 $klein -> dispatch();

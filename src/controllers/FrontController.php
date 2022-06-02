@@ -99,7 +99,8 @@ class FrontController {
        
     // **** controller movie ****
     public function moviesList() {
-        return $this ->movieService ->getAllMovies();
+        $movies =  $this ->movieService ->getAllMovies();
+        echo $this ->twig ->render('viewMoviesList.html.twig', ['movies' =>$movies]);
     }
     public function getOneMovie($id) {
         return $this ->movieService ->getOneMovie($id);

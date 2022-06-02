@@ -1,6 +1,7 @@
 <?php
 
 namespace mvcobjet\Models\Entities;
+use DateTime;
 
 class Movie {
     private $id;
