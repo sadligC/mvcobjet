@@ -95,7 +95,7 @@ $klein ->respond('GET', '/printUpdateDirectorList', function() use($fc) {
 });
 
 $klein -> respond('POST','/printUpdateDirector', function($request) use($fc) {
-    $id = $request->paramsPost()['director'];
+    $id = $request->paramsPost()['person'];
     $fc -> printUpdateDirector ($id);
 });
 

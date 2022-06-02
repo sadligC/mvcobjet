@@ -43,7 +43,7 @@ class FrontController {
     public function printAddActor() {
         $status = "Actor";
         $role = "acteur";
-        echo $this ->twig ->render('viewAddPerson.html.twig'), ['status' =>$status, 'role' =>$role];
+        echo $this ->twig ->render('viewAddPerson.html.twig', ['status' =>$status, 'role' =>$role]);
     }
 
     public function printUpdateActorList() {
@@ -76,7 +76,7 @@ class FrontController {
     public function printAddDirector() {
         $status = "Director";
         $role = "réalisateur";
-        echo $this ->twig ->render('viewAddPerson.html.twig'), ['status' =>$status, 'role' =>$role];
+        echo $this ->twig ->render('viewAddPerson.html.twig', ['status' =>$status, 'role' =>$role]);
     }
 
     public function printUpdateDirectorList() {
@@ -87,11 +87,12 @@ class FrontController {
     }
 
     public function printUpdateDirector($id) {
+        $status = "Director";
+        $role = "réalisateur";
         $director = $this ->directorService ->getOneDirector($id);
-        echo $this ->twig ->render('viewUpdateActor.html.twig', ['actor' => $actor]);
+        echo $this ->twig ->render('viewUpdatePerson.html.twig', ['person' => $director, 'status' =>$status, 'role' =>$role]);
     }
     
-
     public function movieDirector($id) {
         return $this ->directorService ->getMovieDirector($id);
     }

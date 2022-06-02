@@ -34,6 +34,22 @@ class DirectorDao extends BaseDao {
         $stmt = $this ->db -> prepare($sql);
         $stmt ->execute([$director['first_name'], $director['last_name']]);
     }
+
+    public function findById($id) {
+        $sql = "SELECT * FROM director WHERE id = ?";
+        $stmt = $this ->db ->prepare($sql);
+        $result = $stmt ->execute ([$id]);
+        if ($result) {
+            return $stmt -> fetchObject(Director::class);
+        }
+    }
+
+    public function updateDirector($director) {
+        $sql = "UPDATE director SET first_name = ?, last_name = ? WHERE id = ?";
+        $stmt = $this ->db ->prepare($sql);
+        $stmt ->execute([$director ['first_name'], $director ['last_name'], $director['id']]); 
+
+    }
 }
 
 ?>

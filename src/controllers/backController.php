@@ -30,6 +30,10 @@ public function addDirector($director) {
     $this ->directorService ->create($director);
 }
 
+public function updateDirector($director) {
+    $this ->directorService ->updateDirector($director);
+}
+
 }
 
 
