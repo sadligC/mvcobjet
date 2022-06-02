@@ -1,0 +1,20 @@
+{% extends "base.html.twig" %}
+
+{% block title %} film {% endblock %}
+
+{% block h1 %}Mofifier un film{% endblock %}
+
+{% block content %}
+
+<h2>Apporter les modifications</h2>
+
+<form action="/afpa_dwwm/back_end_01/mvc/objet/mvcobjet/updateMovie" method="POST">
+    <pre>{{movie}}</pre><br>
+    <input type="hidden" name="id" value="{{movie.id}}"><br>
+    <input type="text" name="title" value="{{movie.title}}"><br>
+    <input type="text" name="date" value="{{movie.date|date('d-m-Y')}}"><br>
+    <input type="submit" value="OK">
+
+</form>
+
+{% endblock %}

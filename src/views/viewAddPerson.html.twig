@@ -2,9 +2,9 @@
 
 {% block title %} {{role}} {% endblock %}
 
-{% block content %}
+{% block h1 %}Ajouter un {{role}}{% endblock %}
 
-<h1>Ajouter un {{role}}</h1>
+{% block content %}
 
 <form action="/afpa_dwwm/back_end_01/mvc/objet/mvcobjet/add{{status}}" method="POST">
     <input type="text" name="first_name" placeholder="Prénom"><br>

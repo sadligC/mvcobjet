@@ -2,9 +2,9 @@
 
 {% block title %} {{role}} {% endblock %}
 
-{% block content %}
+{% block h1 %}Mofifier un {{role}}{% endblock %}
 
-<h1>Modifier un {{role}}</h1>
+{% block content %}
 
 <h2>Choisir un {{role}}</h2>
 <form action="/afpa_dwwm/back_end_01/mvc/objet/mvcobjet/printUpdate{{status}}" method="POST">

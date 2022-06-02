@@ -13,13 +13,14 @@ class Movie {
     private $genre;
     private $director;
     private $casting;
+    private $comments;
 
 
     public function getId ():int {
-        return $this -> id;
+        return $this ->id;
     }
     public function setId(int $id):Movie {
-        $this->id = $id;
+        $this ->id = $id;
         return $this;
     }
 
@@ -28,7 +29,7 @@ class Movie {
         return $this->title;
     }
     public function setTitle(string $title):Movie {
-        $this->title = $title;
+        $this ->title = $title;
         return $this;
     }
 
@@ -37,16 +38,16 @@ class Movie {
         return $this->description;
     }
     public function setDescription(string $description):Movie {
-        $this->description = $description;
+        $this ->description = $description;
         return $this;
     }
 
     
     public function getDuration():string {
-        return $this->duration;
+        return $this ->duration;
     }
     public function setDuration(string $duration):Movie {
-        $this->duration = $duration;
+        $this ->duration = $duration;
         return $this;
     }
 
@@ -55,16 +56,16 @@ class Movie {
         return $this->date;
     } 
     public function setDate(DateTime $date):Movie {
-        $this->date = $date;
+        $this ->date = $date;
         return $this;
     }
 
      
     public function getCover_image():string {
-        return $this->cover_image;
+        return $this ->cover_image;
     } 
     public function setCover_image(string $cover_image):Movie {
-        $this->cover_image = $cover_image;
+        $this ->cover_image = $cover_image;
         return $this;
     }
 
@@ -73,7 +74,7 @@ class Movie {
         return $this->genre;
     }
     public function setGenre(Genre $genre):Movie {
-        $this->genre = $genre;
+        $this ->genre = $genre;
         return $this;
     } 
 
@@ -82,17 +83,32 @@ class Movie {
         return $this->director;
     }
     public function setDirector(Director $director):Movie {
-        $this->director = $director;
+        $this ->director = $director;
         return $this;
     }
 
-    public function getActors():Actor {
-        return $this->actors;
+
+    public function getCasting() {
+        return $this ->casting;
+    }
+    public function setCasting($casting) {
+        $this ->casting = $casting;
+        return $this;
+    }
+    public function addActor(Actor $actor): void{ 
+        $this ->casting[] = $actor;
     }
 
-    public function setActors(Actor $actors):Movie {
-        $this->actors = $actors;
+    
+    public function getComments() {
+        return $this->comments;
+    }
+    public function setComments($comments) {
+        $this->comments = $comments;
         return $this;
+    }
+    public function addComment(Comment $comment): void{ 
+        $this ->comments[] = $comment;
     }
 }
 

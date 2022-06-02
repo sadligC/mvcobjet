@@ -113,11 +113,20 @@ $route ->respond('GET', '/moviesList', function() use($fc) {
     $fc ->moviesList();
 });
 
+// ******************* afficher un film **************************************
 $route ->respond('GET', '/printOneMovie/[:id]', function($request) use($fc) {
-    $fc ->printOneMovie($request);
+    $fc ->printOneMovie($request ->id);
 });
 
 
+// ********************* modifier un film ******************************************
+$route ->respond('GET', '/printUpdateMovieList', function() use($fc) {
+    $fc ->printUpdateMovieList();
+});
+
+$route ->respond('GET', '/printUpdateMovie', function($request) use($fc) {
+    $fc ->printUpdateMovie($request ->paramsPost());
+});
 
 
 $route -> dispatch();

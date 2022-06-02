@@ -28,7 +28,6 @@ class FrontController {
         echo $this ->twig ->render('viewAccueil.html.twig');
     }
 
-    
 
  // -------------------------------- ACTOR ----------------------------------//
     public function actorsList() { 
@@ -105,9 +104,25 @@ class FrontController {
 
 
  // -------------------------------- MOVIE ----------------------------------//
- public function moviesList() {
+    public function moviesList() {
         $movies =  $this ->movieService ->getAllMovies();
         echo $this ->twig ->render('viewMoviesList.html.twig', ['movies' =>$movies]);
+    }
+
+    public function printOneMovie($id) {
+        $movie = $this ->movieService ->getMovieById($id);
+        echo $this ->twig ->render('viewMovieById.html.twig', ['movie' =>$movie]);
+    }
+
+    public function printUpdateMovieList() {
+        $movies = $this ->movieService ->getAllMovies();
+        echo $this ->twig ->render('viewUpdateMovieList.html.twig', ['movies' =>$movies]);
+    }
+
+    public function printUpdateMovie($movieInfo) {
+        $id = $movieInfo['id'];
+        $movie = $this ->movieService ->getMovieById($id);
+        echo $this ->twig ->render('viewUpdateMovie.html.twig', ['movie' =>$movie]);
     }
 
 }
