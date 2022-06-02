@@ -15,7 +15,7 @@ class MovieService {
     }
 
     public function getOneMovie($id) {
-        return $movie = $this ->movieDao ->selectById($id);
+        $movie = $this ->movieDao ->selectById($id);
     }
 }
 
