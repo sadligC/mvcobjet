@@ -6,7 +6,7 @@ use PDO;
 class MovieDao extends BaseDao {
 
     public function selectTitles() {
-        $sql = "SELECT title FROM movie";
+        $sql = "SELECT id, title FROM movie";
         $stmt = $this ->db ->prepare($sql);
         $result = $stmt ->execute();
         if ($result) {

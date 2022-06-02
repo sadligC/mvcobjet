@@ -110,7 +110,11 @@ $route -> respond('POST','/updateDirector', function($request) use ($bc, $fc) {
 
 // ************** afficher la liste des films //////////////////////////////////
 $route ->respond('GET', '/moviesList', function() use($fc) {
-    $result = $fc ->moviesList();
+    $fc ->moviesList();
+});
+
+$route ->respond('GET', '/printOneMovie/[:id]', function($request) use($fc) {
+    $fc ->printOneMovie($request);
 });
 
 
