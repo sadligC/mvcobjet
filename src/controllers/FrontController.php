@@ -30,7 +30,7 @@ class FrontController {
 
     
 
-    // ***** controller actor ****
+ // -------------------------------- ACTOR ----------------------------------//
     public function actorsList() { 
         $actors = $this->actorService->getAllActors();
       }
@@ -67,8 +67,11 @@ class FrontController {
        return $this ->actorService ->getMovieActors($id);
     }
 
-    // **** controller director ****
-    public function printDirectorsList() {
+
+
+
+ // -------------------------------- DIRECTOR ----------------------------------//
+ public function printDirectorsList() {
         $directors =  $this ->directorService ->getAllDirectors();
         echo $this ->twig ->render('viewDirectorsList.html.twig', ['directors' => $directors]);
     }
@@ -97,27 +100,14 @@ class FrontController {
         return $this ->directorService ->getMovieDirector($id);
     }
        
-    // **** controller movie ****
-    public function moviesList() {
+
+
+
+
+ // -------------------------------- MOVIE ----------------------------------//
+ public function moviesList() {
         $movies =  $this ->movieService ->getAllMovies();
         echo $this ->twig ->render('viewMoviesList.html.twig', ['movies' =>$movies]);
-    }
-    public function getOneMovie($id) {
-        return $this ->movieService ->getOneMovie($id);
-    }
-
-    // **** controller genre ****
-    public function movieGenre($id) {
-        return $this ->genreService ->getMovieGenre($id);
-    }
-
-    // **** controller comment ****
-    public function movieComments($id) {
-        return $this ->commentService ->getMovieComments($id);
-    }
-
-    public function getOneComment($id) {
-        
     }
 
 }

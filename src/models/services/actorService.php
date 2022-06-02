@@ -21,11 +21,13 @@ class ActorService {
         return $acteur;
     }
 
-    public function create($actor) {
+    public function create($actorInfo) {
+        $actor = $this ->actorDao ->createActor($actorInfo);
         $this ->actorDao ->create($actor);
     }
 
-    public function updateActor($actor) {
+    public function updateActor($actorInfo) {
+        $actor = $this ->actorDao ->createActor($actorInfo);
         $this ->actorDao ->updateActor($actor);
     }
 

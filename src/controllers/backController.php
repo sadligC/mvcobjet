@@ -16,8 +16,8 @@ class BackController {
     }
 
 // ------------------------ ACTOR ---------------------------- //
-    public function addActor($actor) {
-        $this ->actorService ->create($actor);
+    public function addActor($actorInfo) {
+        $this ->actorService ->create($actorInfo);
     }
 
     public function updateActor($actor) {
@@ -26,12 +26,12 @@ class BackController {
 
 
 // ------------------------ DIRECTOR---------------------------- //
-public function addDirector($director) {
-    $this ->directorService ->create($director);
+public function addDirector($directorInfo) {
+    $this ->directorService ->create($directorInfo);
 }
 
-public function updateDirector($director) {
-    $this ->directorService ->updateDirector($director);
+public function updateDirector($directorInfo) {
+    $this ->directorService ->updateDirector($directorInfo);
 }
 
 }

@@ -5,6 +5,7 @@ use mvcobjet\models\entities\Director;
 
 class DirectorDao extends BaseDao {
 
+// ---------------- requetes SQL ---------------------------//
     public function selectAll() {
         $sql = "SELECT * FROM director";
         $stmt = $this ->db ->prepare($sql);
@@ -32,7 +33,7 @@ class DirectorDao extends BaseDao {
     public function create($director) {
         $sql = "INSERT INTO director (first_name, last_name) VALUES (?, ?)";
         $stmt = $this ->db -> prepare($sql);
-        $stmt ->execute([$director['first_name'], $director['last_name']]);
+        $stmt ->execute([$director ->getFirst_name(), $director ->getLast_name()]);
     }
 
     public function findById($id) {
@@ -47,9 +48,22 @@ class DirectorDao extends BaseDao {
     public function updateDirector($director) {
         $sql = "UPDATE director SET first_name = ?, last_name = ? WHERE id = ?";
         $stmt = $this ->db ->prepare($sql);
-        $stmt ->execute([$director ['first_name'], $director ['last_name'], $director['id']]); 
+        $stmt ->execute([$director ->getFirst_name(), $director ->getLast_name(), $director ->getId()]); 
 
     }
+
+
+// --------------------constructeur objet director ------------------------------ //
+
+public function createDirector($directorInfo) {
+    $director = new Director();
+
+    $director -> setId($directorInfo['id']);
+    $director -> setLast_name($directorInfo['last_name']);
+    $director -> setFirst_name($directorInfo['first_name']);
+
+    return $director;
+}
 }
 
 ?>
