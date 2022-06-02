@@ -61,7 +61,7 @@ $klein ->respond('GET', '/printUpdateActorList', function() use($fc) {
 });
 
 $klein -> respond('POST','/printUpdateActor', function($request) use($fc) {
-    $id = $request->paramsPost()['acteur'];
+    $id = $request->paramsPost()['person'];
     $fc -> printUpdateActor ($id);
 });
 
@@ -75,8 +75,33 @@ $klein -> respond('POST','/updateActor', function($request) use ($bc, $fc) {
 ////////////////////////////////////////////////////////////////////////////////
 
 // *************** afficher la liste des réalisateurs *************************
-$klein -> respond('GET','/directorsList', function() use($fc) {
-    $res = $fc -> directorsList();
+$klein -> respond('GET','/listDirectors', function() use($fc) {
+    $res = $fc -> printDirectorsList();
+});
+
+// ******************* ajouter un réalisateur à la bd *************************************
+$klein -> respond('GET','/printAddDirector', function() use($fc) {
+    $fc -> printAddDirector();
+});
+
+$klein -> respond('POST','/addDirector', function($request) use($bc, $fc) {
+    $bc -> addDirector($request->paramsPost());
+    $fc -> printDirectorsList();
+});
+
+
+$klein ->respond('GET', '/printUpdateDirectorList', function() use($fc) {
+    $fc ->printUpdateDirectorList();
+});
+
+$klein -> respond('POST','/printUpdateDirector', function($request) use($fc) {
+    $id = $request->paramsPost()['director'];
+    $fc -> printUpdateDirector ($id);
+});
+
+$klein -> respond('POST','/updateDirector', function($request) use ($bc, $fc) {
+    $bc -> updateDirector($request->paramsPost());
+    $fc -> printDirectorsList();
 });
 
 ////////////////////////////////////////////////////////////////////////////////
