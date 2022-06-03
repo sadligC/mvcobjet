@@ -96,9 +96,21 @@ class Movie {
         return $this;
     }
     public function addActor(Actor $actor): void{ 
+        foreach ($this ->casting as $act) {
+            if ($actor ->getId() === $act ->getId()) {
+                return ;
+            }
+        }
         $this ->casting[] = $actor;
     }
 
+    public function removeActor(Actor $actor): void{ 
+        foreach ($this ->casting as $key =>$act) {
+            if ($actor ->getId() == $act ->getId()) {
+                unset ($this ->casting[$key]);
+            }
+        }
+    }
     
     public function getComments() {
         return $this->comments;

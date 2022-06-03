@@ -9,12 +9,32 @@
 <h2>Apporter les modifications</h2>
 
 <form action="/afpa_dwwm/back_end_01/mvc/objet/mvcobjet/updateMovie" method="POST">
-    <pre>{{movie}}</pre><br>
+    {# <pre>{{ movie }}</pre><br> #}
     <input type="hidden" name="id" value="{{movie.id}}"><br>
-    <input type="text" name="title" value="{{movie.title}}"><br>
-    <input type="text" name="date" value="{{movie.date|date('d-m-Y')}}"><br>
+    <input type="text" name="title" value="{{movie.title}}"><label for="title">titre</label><br>
+    <input type="date" name="date" value="{{movie.date|date('d-m-Y')}}"><label for="date">date</label><br>
+    <input type="text" name="duration" value="{{movie.duration}}"><label for="duration">durée</label><br>
+    <select name="director">
+        {% for director in directors %}
+        <option value="{{director.id}}" {% if director.id == movie.director.id %} selected {% endif %}>{{director.first_name}} {{director.last_name}}</option>
+        {% endfor %}
+    </select><label for="director">réalisateur</label><br>
+    <select name="add-actor">
+        <option value="null"></option>
+        {% for actor in actors %}
+        <option value="{{actor.id}}">{{actor.first_name}} {{actor.last_name}}</option>
+        {% endfor %}
+    </select><label for="add-actor">ajouter un acteur</label><br>
+    <select name="del-actor">
+        <option value="null"></option>
+        {% for actor in movie.casting %}
+        <option value="{{actor.id}}">{{actor.first_name}} {{actor.last_name}}</option>
+        {% endfor %}
+    </select><label for="del-actor">retirer un acteur</label><br>
+    <textarea name="description">{{movie.description}}</textarea><label for="description">résumé</label><br>
     <input type="submit" value="OK">
 
 </form>
+
 
 {% endblock %}
