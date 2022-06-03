@@ -16,6 +16,8 @@ class ActorDao extends BaseDao {
                 array_push ($actors, $actor);
             }
             return $actors;
+        } else {
+            throw new \PDOException($stmt->errorInfo()[2]);
         }
     }
 

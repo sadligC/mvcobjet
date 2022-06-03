@@ -4,6 +4,7 @@ namespace mvcobjet\models\services;
 
 use mvcobjet\models\daos\ActorDao;
 
+
 class ActorService {
     private $actorDao;
 
@@ -12,8 +13,13 @@ class ActorService {
     }
 
     public function getAllActors() {
-        $acteurs = $this ->actorDao ->findAll();
-        return $acteurs;
+        try {
+            $acteurs = $this ->actorDao ->findAll();
+            return $acteurs;
+        } catch(\Exception $e) {
+            print_r($e ->getMessage());
+        }
+       
     }
 
     public function getOneActor($id) {

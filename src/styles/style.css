@@ -48,4 +48,7 @@ ul {
     display: flex;
     justify-content: space-between;
 }
-
+textarea {
+    width: 580px;
+    height: 120px;
+}

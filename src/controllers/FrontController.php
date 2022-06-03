@@ -120,9 +120,11 @@ class FrontController {
     }
 
     public function printUpdateMovie($movieInfo) {
-        $id = $movieInfo['id'];
+        $id = $movieInfo['movie'];
         $movie = $this ->movieService ->getMovieById($id);
-        echo $this ->twig ->render('viewUpdateMovie.html.twig', ['movie' =>$movie]);
+        $directors = $this ->directorService ->getAllDirectors();
+        $actors = $this ->actorService ->getAllActors();
+        echo $this ->twig ->render('viewUpdateMovie.html.twig', ['movie' =>$movie, 'directors' =>$directors, 'actors' =>$actors]);
     }
 
 }

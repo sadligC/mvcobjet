@@ -124,8 +124,12 @@ $route ->respond('GET', '/printUpdateMovieList', function() use($fc) {
     $fc ->printUpdateMovieList();
 });
 
-$route ->respond('GET', '/printUpdateMovie', function($request) use($fc) {
+$route ->respond('POST', '/printUpdateMovie', function($request) use($fc) {
     $fc ->printUpdateMovie($request ->paramsPost());
+});
+
+$route ->respond('POST', '/updateMovie', function($request) use($bc) {
+    $bc ->updateMovie($request ->paramsPost());
 });
 
 
