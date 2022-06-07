@@ -1,0 +1,1 @@
+{"version":1,"defects":{"ActorDaoTest::testfindById":4,"ActorDaoTest::testFindById":4,"ActorDaoTest::testFindAll":4,"ActorDaoTest::testCreate":3},"times":{"ActorDaoTest::testfindById":0.007,"ActorDaoTest::testFindById":0.012,"ActorDaoTest::testFindAll":0.001,"ActorDaoTest::testCreate":0.05}}
