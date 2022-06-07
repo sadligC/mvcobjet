@@ -14,6 +14,19 @@ class GenreDao extends BaseDao {
             return $stmt ->fetchObject(Genre::class);
         }
     }
+
+    public function selectAllGenres() {
+        $sql = "SELECT * FROM genre";
+        $stmt = $this ->db ->prepare($sql);
+        $result = $stmt ->execute();
+        if ($result) {
+            $genres = [];
+            while ($genre = $stmt ->fetchObject(Genre::class)) {
+                array_push($genres, $genre);
+            }
+            return $genres;
+        }
+    }
 }
 
 ?>

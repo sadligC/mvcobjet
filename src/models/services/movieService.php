@@ -25,7 +25,7 @@ class MovieService {
     }
 
     public function getAllmovies() {
-       return $movies = $this ->movieDao ->selectTitles();
+       return $this ->movieDao ->selectTitles();
     }
 
     public function getMovieById($id) {
@@ -54,6 +54,9 @@ class MovieService {
         if ($updt['director'] != $movie ->getDirector() ->getId()) {
             $director = $this ->directorDao ->findById($updt['director']);
         }
+        if ($updt['genre'] != $movie ->getGenre() ->getId()) {
+            $genre = $this ->genreDao ->selectMovieGenre($updt['genre']);
+        }
         
         
         if ($updt['title'] != $movie ->getTitle()) {
@@ -74,15 +77,20 @@ class MovieService {
         if (isset($director)) {
             $movie ->setDirector($director);
         }
-        if (isset($addActor)) {
-            $movie ->addActor($addActor);
-            $movie ->movieDao ->addactorMovie($addActor ->getId(), $movie ->getId());
+        if (isset($genre)) {
+            $movie ->setGenre($genre);
         }
         if (isset($delActor)) {
-            $movie ->removeActor($delActor);
+            $this -> actorDao ->delActorMovie($movie ->getId(), $delActor ->getId());
+            $movie ->removeActor($delActor);  
+        }
+        if (isset($addActor)) {
+            if ($movie ->addActor($addActor)) {
+                $this -> actorDao ->addActorMovie($movie ->getId(), $addActor ->getId());
+            }
         }
 
-        echo"<pre>";print_r($movie);echo"</pre>";die();
+        $this -> movieDao ->updateMovie($movie);
     }
 }
 

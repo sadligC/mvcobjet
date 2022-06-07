@@ -41,8 +41,20 @@ class MovieDao extends BaseDao {
         $movie ->setDate($date);
         $movie ->setCover_image($movieInfo['cover_image']);
     
-    
         return $movie;
+    }
+
+
+    public function updateMovie($movie) {
+        $title = $movie ->getTitle();
+        $description = $movie ->getDescription();
+        $duration = $movie ->getTitle();
+        $date = $movie ->getDate() ->format('Y-m-d');
+        $genre_id = $movie ->getGenre() ->getId();
+        $director_id = $movie ->getDirector() ->getId();
+        $sql = "UPDATE movie SET title = ?, description = ?, duration = ?, date = ?, genre_id = ?, director_id = ? WHERE id = ? ";
+        $stmt = $this ->db ->prepare($sql);
+        $stmt ->execute([$title, $description, $duration, $date, $genre_id, $director_id, $movie ->getId()]);
     }
 }
 

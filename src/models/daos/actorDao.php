@@ -57,6 +57,20 @@ class ActorDao extends BaseDao {
         }
     }
 
+    public function addActorMovie($movie,$actor) {
+        $sql = "INSERT INTO movies_actors (movie_id, actor_id) VALUES (?, ?)";
+        $stmt = $this -> db ->prepare($sql);
+        $stmt -> execute ([$movie, $actor]);
+    }
+
+    public function delActorMovie($movie,$actor) {
+        $sql = "DELETE FROM movies_actors WHERE movie_id = ? AND actor_id = ?";
+        $stmt = $this -> db ->prepare($sql);
+        $stmt -> execute ([$movie, $actor]);
+    }
+
+
+
 
 // ---------------------------- constructeur d'objet acteur ---------------------//
     public function createActor($actorInfo) {

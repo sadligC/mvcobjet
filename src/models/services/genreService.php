@@ -13,6 +13,10 @@ class GenreService {
     public function getMovieGenre($id) {
         return $this ->genreDao ->selectMovieGenre($id);
     }
+
+    public function getAllGenres() {
+        return $this ->genreDao ->selectAllGenres();
+    }
 }
 
 ?>

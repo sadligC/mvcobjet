@@ -128,8 +128,9 @@ $route ->respond('POST', '/printUpdateMovie', function($request) use($fc) {
     $fc ->printUpdateMovie($request ->paramsPost());
 });
 
-$route ->respond('POST', '/updateMovie', function($request) use($bc) {
+$route ->respond('POST', '/updateMovie', function($request) use($bc, $fc) {
     $bc ->updateMovie($request ->paramsPost());
+    $fc ->printUpdateMovieList();
 });
 
 

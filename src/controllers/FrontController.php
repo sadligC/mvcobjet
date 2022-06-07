@@ -124,7 +124,8 @@ class FrontController {
         $movie = $this ->movieService ->getMovieById($id);
         $directors = $this ->directorService ->getAllDirectors();
         $actors = $this ->actorService ->getAllActors();
-        echo $this ->twig ->render('viewUpdateMovie.html.twig', ['movie' =>$movie, 'directors' =>$directors, 'actors' =>$actors]);
+        $genres = $this ->genreService ->getAllGenres();
+        echo $this ->twig ->render('viewUpdateMovie.html.twig', ['movie' =>$movie, 'directors' =>$directors, 'actors' =>$actors, 'genres' =>$genres]);
     }
 
 }

@@ -95,21 +95,23 @@ class Movie {
         $this ->casting = $casting;
         return $this;
     }
-    public function addActor(Actor $actor): void{ 
+    public function addActor(Actor $actor):bool { 
         foreach ($this ->casting as $act) {
-            if ($actor ->getId() === $act ->getId()) {
-                return ;
-            }
+            if ($actor ->getId() == $act ->getId()) {
+                return false;
+            } 
         }
         $this ->casting[] = $actor;
+        return true;
     }
 
-    public function removeActor(Actor $actor): void{ 
+    public function removeActor(Actor $actor):bool { 
         foreach ($this ->casting as $key =>$act) {
             if ($actor ->getId() == $act ->getId()) {
                 unset ($this ->casting[$key]);
             }
         }
+        return true;
     }
     
     public function getComments() {
