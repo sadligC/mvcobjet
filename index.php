@@ -133,6 +133,28 @@ $route ->respond('POST', '/updateMovie', function($request) use($bc, $fc) {
     $fc ->printUpdateMovieList();
 });
 
+// ************************** modifier les com ******************************
+$route ->respond('GET', '/printUpdateCommentList', function() use($fc) {
+    $fc ->printUpdateCommentList();
+});
+
+$route ->respond('POST', '/printUpdateComment', function($request) use($fc) {
+    $fc ->printUpdateComment($request ->paramsPost());
+});
+
+$route ->respond('GET', '/printAddComment/[:id]', function($request) use($fc) {
+    $fc ->printAddComment($request ->id);
+});
+
+$route ->respond('POST', '/addComment', function($request) use($bc, $fc) {
+    $bc ->addComment($request ->paramsPost());
+    $fc ->accueil();
+});
+
+$route ->respond('GET', '/deleteComment/[:id]', function($request) use($bc, $fc) {
+    $bc -> deleteComment($request ->id);
+    $fc ->accueil();
+});
 
 $route -> dispatch();
 

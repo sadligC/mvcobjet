@@ -28,6 +28,10 @@ class MovieService {
        return $this ->movieDao ->selectTitles();
     }
 
+    public function getTitleById($id) {
+       return $this ->movieDao ->selectTitle($id);
+    }
+
     public function getMovieById($id) {
         $movie = $this ->movieDao ->selectById($id);
         $casting = $this ->actorDao ->selectMovieActors($id);

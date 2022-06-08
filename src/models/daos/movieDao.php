@@ -20,6 +20,15 @@ class MovieDao extends BaseDao {
         }
     }
 
+    public function selectTitle($id) {
+        $sql = "SELECT id, title FROM movie WHERE id = ?";
+        $stmt = $this ->db ->prepare($sql);
+        $result = $stmt ->execute([$id]);
+        if ($result) {
+            return $stmt ->fetch(PDO::FETCH_ASSOC);
+        }
+    }
+
     public function selectById($id) {
         $sql = "SELECT * FROM movie WHERE id = ?";
         $stmt = $this-> db ->prepare($sql);

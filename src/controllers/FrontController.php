@@ -48,8 +48,13 @@ class FrontController {
     public function printUpdateActorList() {
         $status = "Actor";
         $role = "acteur";
-        $actors = $this ->actorService ->getAllActors();
-        echo $this ->twig ->render('viewUpdatePersonList.html.twig', ['persons' => $actors, 'status' =>$status, 'role' =>$role]);
+        try {
+            $actors = $this ->actorService ->getAllActors();
+            echo $this ->twig ->render('viewUpdatePersonList.html.twig', ['persons' => $actors, 'status' =>$status, 'role' =>$role]);
+        } catch(\Exception $e) {
+            $error = ($e ->getMessage());
+            echo $this ->twig ->render('viewError.html.twig', ['error' => $error]);
+        } 
     }
 
     public function printUpdateActor($id) {
@@ -128,6 +133,24 @@ class FrontController {
         echo $this ->twig ->render('viewUpdateMovie.html.twig', ['movie' =>$movie, 'directors' =>$directors, 'actors' =>$actors, 'genres' =>$genres]);
     }
 
+    // ------------------------------ COMMENTS -----------------------------------
+    public function printUpdateCommentList() {
+        $movies =  $this ->movieService ->getAllMovies();
+        echo $this ->twig ->render('viewCommentMoviesList.html.twig', ['movies' =>$movies]);
+    }
+
+    public function printUpdateComment($movie) {
+        $id = $movie['movie-id'];
+        $movie = $this ->movieService ->getTitleById($id);
+        $comments= $this ->commentService ->getMovieComments($id);
+        echo $this ->twig ->render('viewCommentEdit.html.twig', ['comments' =>$comments, 'movie' =>$movie]);
+    }
+
+    public function printAddComment($id) {
+        $movie = $this ->movieService ->getTitleById($id);
+        echo $this ->twig ->render('viewAddComment.html.twig', ['movie' =>$movie]);
+    }
 }
+
 
 ?>

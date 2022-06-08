@@ -28,19 +28,29 @@ class ActorDao extends BaseDao {
         $result = $stmt;
         if ($result) {
            return $stmt -> fetchObject(Actor::class);
+        } else {
+            throw new \PDOException($stmt->errorInfo()[2]);
         }
     }
 
     public function create($actor) {
         $sql = "INSERT INTO actor (first_name, last_name) VALUES (?,?)";
         $stmt = $this ->db ->prepare($sql);
-        $stmt ->execute([$actor ->getFirst_name(), $actor ->getLast_name()]);
+        if ($stmt ->execute([$actor ->getFirst_name(), $actor ->getLast_name()])) {
+            return;
+        } else {
+            throw new \PDOException($stmt->errorInfo()[2]);
+        }
     }
 
     public function updateActor($actor) {
         $sql = "UPDATE actor SET first_name = ?, last_name = ? WHERE id = ?";
         $stmt = $this ->db ->prepare($sql);
-        $stmt ->execute([$actor ->getFirst_name(), $actor ->getLast_name(), $actor ->getId()]);
+        if ($stmt ->execute([$actor ->getFirst_name(), $actor ->getLast_name(), $actor ->getId()])) {
+            return;
+        } else {
+            throw new \PDOException($stmt->errorInfo()[2]);
+        }
     }
 
     public function selectMovieActors($id) {
@@ -54,19 +64,29 @@ class ActorDao extends BaseDao {
                 array_push($casting, $actor);
             }
             return $casting;
+        } else {
+            throw new \PDOException($stmt->errorInfo()[2]);
         }
     }
 
     public function addActorMovie($movie,$actor) {
         $sql = "INSERT INTO movies_actors (movie_id, actor_id) VALUES (?, ?)";
         $stmt = $this -> db ->prepare($sql);
-        $stmt -> execute ([$movie, $actor]);
+        if ($stmt -> execute ([$movie, $actor])) {
+            return;
+        }  else {
+            throw new \PDOException($stmt->errorInfo()[2]);
+        }
     }
 
     public function delActorMovie($movie,$actor) {
         $sql = "DELETE FROM movies_actors WHERE movie_id = ? AND actor_id = ?";
         $stmt = $this -> db ->prepare($sql);
-        $stmt -> execute ([$movie, $actor]);
+        if ($stmt -> execute ([$movie, $actor])) {
+            return;
+        }  else {
+            throw new \PDOException($stmt->errorInfo()[2]);
+        }
     }
 
 

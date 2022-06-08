@@ -3,8 +3,6 @@
 use mvcobjet\models\daos\ActorDao;
 use mvcobjet\Models\Entities\Actor;
 
-require ('actorDao.php');
-
 class ActorDaoTest extends \PHPUnit\Framework\TestCase {
 
     private $actorDao;
@@ -26,9 +24,9 @@ class ActorDaoTest extends \PHPUnit\Framework\TestCase {
     }
 
     public function testCreate():void {
-        $actor = $this ->actor;
-        $actor ->setFirst_name("test");
-        $actor ->setLast_name("test");
+        $actor = [];
+        // $actor ->setFirst_name("test");
+        // $actor ->setLast_name("test");
         
         $result = $this ->actorDao ->create($actor);
         $this ->assertNull($result);

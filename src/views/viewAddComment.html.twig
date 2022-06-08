@@ -1,0 +1,17 @@
+{% extends "base.html.twig" %}
+
+{% block title %} {{movie.title}} {% endblock %}
+
+{% block h1 %}{{movie.title}}{% endblock %}
+
+{% block content %}
+
+<h2>Ajouter un commentaire</h2>
+<form action="/afpa_dwwm/back_end_01/mvc/objet/mvcobjet/addComment" method="POST">
+    <input type="hidden" name="movie_id" value="{{movie.id}}"><br>
+    <input type="text" name="author" placeholder="auteur"><br>
+    <input type="number" name="mark" placeholder="note /10" min="0" max="10"><br>
+    <textarea name="content" rows="7" cols="80" placeholder="Commentaire..."></textarea><br>
+    <input type="submit" value="OK">
+</form>
+{% endblock %}
