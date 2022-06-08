@@ -15,13 +15,22 @@ class CommentService {
     }
 
     public function createComment($com) {
-        $comment = $this ->commentDao -> create($com);
+        $comment = $this ->commentDao ->create($com);
         $this ->commentDao ->insertComment($comment);
     }
 
     public function deleteComment($id) {
         $comment = $this ->commentDao -> selectComment($id);
         $this ->commentDao ->delete($comment);
+    }
+
+    public function getComment($id) {
+        return $this ->commentDao ->selectComment($id);
+    }
+
+    public function editComment($com) {
+        $comment = $this ->commentDao ->create($com);
+        $this ->commentDao ->update($comment);
     }
 }
 

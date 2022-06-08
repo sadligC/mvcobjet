@@ -1,0 +1,16 @@
+{% extends "base.html.twig" %}
+
+{% block title %} commentaire {% endblock %}
+
+{% block h1 %}Modifier le commentaire{% endblock %}
+
+{% block content %}
+<h2>Modifier</h2>
+<form action="/afpa_dwwm/back_end_01/mvc/objet/mvcobjet/editComment" method="POST">
+    <input type="hidden" name="id" value="{{ com.id }}"><br>
+    <input type="text" name="author" value="{{ com.author }}"><label for="author">auteur</label><br>
+    <input type="number" name="mark" value="{{ com.mark }}" min="0" max="10"><label for="mark">note /10</label><br>
+    <textarea name="content" rows="7" cols="80">{{ com.content }}</textarea><br>
+    <input type="submit" value="OK">
+</form>
+{% endblock %}

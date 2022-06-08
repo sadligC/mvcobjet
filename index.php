@@ -152,7 +152,16 @@ $route ->respond('POST', '/addComment', function($request) use($bc, $fc) {
 });
 
 $route ->respond('GET', '/deleteComment/[:id]', function($request) use($bc, $fc) {
-    $bc -> deleteComment($request ->id);
+    $bc ->deleteComment($request ->id);
+    $fc ->accueil();
+});
+
+$route  ->respond('GET', '/printEditComment/[:id]', function($request) use($fc) {
+    $fc ->printEditComment($request ->id);
+});
+
+$route ->respond('POST', '/editComment', function($request) use($bc,$fc) {
+    $bc ->editComment($request ->paramsPost());
     $fc ->accueil();
 });
 

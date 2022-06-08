@@ -5,7 +5,6 @@
 {% block h1 %}{{movie.title}}{% endblock %}
 
 {% block content %}
-
 <h2>Ajouter un commentaire</h2>
 <form action="/afpa_dwwm/back_end_01/mvc/objet/mvcobjet/addComment" method="POST">
     <input type="hidden" name="movie_id" value="{{movie.id}}"><br>

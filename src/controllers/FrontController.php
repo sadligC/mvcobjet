@@ -150,6 +150,11 @@ class FrontController {
         $movie = $this ->movieService ->getTitleById($id);
         echo $this ->twig ->render('viewAddComment.html.twig', ['movie' =>$movie]);
     }
+
+    public function printEditComment($id) {
+        $comment = $this ->commentService ->getComment($id);
+        echo $this ->twig ->render('viewEditComment.html.twig', ['com' =>$comment]);
+    }
 }
 
 

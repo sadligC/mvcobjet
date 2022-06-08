@@ -34,6 +34,7 @@ class CommentDao extends BaseDao {
         
         $comment = new Comment();
 
+        $comment ->setId($com['id']);
         $comment ->setAuthor($com['author']);
         $comment ->setMark($com['mark']);
         $comment ->setContent($com['content']);
@@ -57,6 +58,12 @@ class CommentDao extends BaseDao {
         $sql = "DELETE FROM comment WHERE id = ?";
         $stmt = $this ->db ->prepare($sql);
         $stmt -> execute([$com ->getId()]);
+    }
+
+    public function update($com) {
+        $sql = "UPDATE comment SET author = ?, mark = ?, content = ? WHERE id = ?";
+        $stmt = $this ->db ->prepare($sql);
+        $stmt ->execute([$com ->getAuthor(), $com ->getMark(), $com ->getContent(), $com ->getId()]);
     }
 }
 

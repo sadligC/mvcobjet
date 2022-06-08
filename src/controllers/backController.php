@@ -54,6 +54,10 @@ public function deleteComment($id) {
     $this ->commentService ->deleteComment($id);
 }
 
+public function editComment($com) {
+    $this ->commentService ->editComment($com);
+}
+
 }
 
 
